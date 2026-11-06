@@ -110,7 +110,7 @@ async def on_message(message: Message):
         return
     if not message.text or message.text.startswith("/"):
         return
-    message.text = message.text[:101]
+    text = message.text[:101]
     chat_id = message.chat.id
     user_name = message.from_user.first_name or "Участник"
 
@@ -185,7 +185,7 @@ async def main():
     scheduler.add_job(
         send_initiative,
         trigger="interval",
-        hours=1,
+        minutes=30,
         jitter=0,
         next_run_time=datetime.now() + timedelta(minutes=1)
     )
